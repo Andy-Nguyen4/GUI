@@ -1,3 +1,3 @@
 # GUI
 
-This page was made to keep my assignments for GUI.
+Everything will be in the gh-pages branch.
