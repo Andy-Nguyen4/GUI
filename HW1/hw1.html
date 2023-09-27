@@ -1,0 +1,151 @@
+<!--
+Name: Andy Nguyen
+Date: 9/24/2023
+Description: Making my first web page. This web page tells you how to solve a simple conditional probability problem.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <title>Conditional Probability</title>
+        <link rel="stylesheet" href="css/hw1.css">  <!-- link to my stylesheet located in the css folder -->
+    </head>
+    
+    <body>
+        
+        <!-- these are CSS W3C validation icons -->
+        <p>
+            <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!">
+            </a>
+        </p>
+        
+        <p>
+            <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS!">
+            </a>
+        </p>
+        
+        <!-- The introduction to the problem -->
+		<h1>How to solve a conditional probability problem</h1>
+		<p>Today, I will be showing you guys how to solve a simple conditional probablility problem.<p>
+        
+		<h2>Our problem</h2>
+        
+        <p>There are <b>1,000 students</b> in a school. <b>300 students</b> are enrolled in a calculus course and <b>250 students</b>
+            are enrolled in a biology course. There are <b>70 students</b> who are taking <b>both</b> calculus and biology.
+            If a student is chosen at random, (a) What is the probability that the student is taking calculus?
+            (b) What is the probability that the student is taking calculus <b>given</b> that the student is also taking
+            biology? (c) What is the probability that the student is taking biology <b>given</b> that the student is also
+            taking calculus?</p>
+        
+        <!-- How to approach this problem -->
+		<h2>What to do first</h2>
+        
+		<p>The first thing to note is that this problem has multiple parts (a, b, and c). We will start off by
+            solving part (a) but before that, you should take note of some important details (i.e, number of students in
+            each course). I put all important details in bold. <br> 
+            Another thing that would aid us in solving this problem is visualization. For example, a <b>venn diagram</b> would 
+            help us visualize this problem. It is also commonly use in conditional probability problems.</p>
+        
+        <!-- image insert of venn diagram -->
+        <h3>Here is our venn diagram</h3>
+        <img src="Images/VD.jpg" alt="Venn Diagram" width="350" height="350">
+        
+        <p>As you can see, the venn diagram makes the problem clearer. There are two circles (called sets) labeled <b>A</b> and <b>B</b> in a
+            rectangle labeled <b>S</b>. Both A and B are called <b>events</b>. 
+            Event <b>A</b> represents the number of students taking calculus while event <b>B</b> represents the
+            number of students taking biology. You can see the amount in each respective circle. 
+            The <b>intersection</b> of A and B shows the number of students taking both calculus and biology. 
+            An intersection represents what two events have in common.
+            It's the overlap of A and B. <b>S</b> is called the <b>sample space</b> or the <b>universal set</b>. The universal
+            set contains all elements or represents all possible outcomes. In this case, S includes all students in the 
+            school.</p>
+        
+        <p><br> Alternatively, we can also make a small table to help us:</p>
+        
+        <!-- This a table -->
+        <table style="width:50%">
+            <tr>
+                <th>Students taking calculus</th>
+                <th>Students taking biology</th>
+                <th>Students taking calculus and biology</th>
+                <th>Total # of students</th>
+            </tr>
+            <tr>
+                <td>300</td>
+                <td>250</td>
+                <td>70</td>
+                <td>1000</td>
+            </tr>
+        </table>
+        
+        <hr>
+        
+        <!-- This is the solution to part (a) -->
+        <h2>Solving part (a)</h2>
+        <p>Part (a) states: What is the probability that the student is taking calculus?</p>
+        
+        <p>This part is fairly simple. To find the probability of a student taking calculus, you would take the number
+            of students taking calculus (300) and divide it by the total number of students (1,000). Another way to look at
+            this is: We divide event (A) by the universal set (S). <br> Do that and we get the
+            following:</p>
+        
+        <img src="Images/part(a).jpg" alt="part a" width="600" height="150">
+        
+        <p>So, the probability of a student taking calculus is 0.3 or 30%.</p>
+        
+        <hr>
+        
+        <!-- This is the solution to part (b) -->
+        <h2>Solving part (b)</h2>
+        <p>Part (b) states: What is the probability that the student is taking calculus <b>given</b> that the student is also 
+            taking biology?</p>
+        
+        <p>Part (b) is a little bit harder than (a) but if you know the right formula to use, then it's fairly simple. Before I
+            give you the formula, let's look at this question in another way. <br> What is the probability of event A 
+            (number of students taking calculus) occurring <b>given</b> that event B (number of students taking biology) has
+            already occurred?<br> The way to write this as an equation is: <b>P(A | B)</b> <br> This is the first part of the
+            formula to solve this problem. What about the rest?</p>
+        
+        <p>The formula for conditional probability looks like this:</p>
+        <img src="Images/formula.jpg" alt="formula" width="600" height="150">
+        
+        <p>The probability of event A occurring given that event B has already occurred is equal to the probability of the
+            event A intersect event B divided by the probability of event B. Event B must also be greater than 0.</p>
+        
+        <p>An important detail to keep in mind is that we already know B has occurred since it was given to us. This means that
+            everything outside of the set B can be discarded. We will only focus on the set B. You can refer to the venn diagram 
+            for visualization. Now, this means that the outcome of A can only be possible if it is within the set A intersect B.
+            Or, the overlap of A and B (refer to the venn diagram).</p>
+        
+        <p>Now, let's use the formula and see what we get:</p>
+        <p>(Note: the intersect symbol looks like an upside down capital U.)</p>
+        <img src="Images/part(b).jpg" alt="part b" width="600" height="150">
+        
+        <p>So, the probability that the student is taking calculus given that the student is also taking biology is 0.28 or 28%.</p>
+        
+        <hr>
+        
+        <!-- This is the solution to part (c) -->
+        <h2>Solving part (c)</h2>
+        <p>Part (c) states: What is the probability that the student is taking biology <b>given</b> that the student is also
+            taking calculus?</p>
+        
+        <p>Part (c) is similar to part (b). You would use the same formula in the previous part to solve this one. However,
+            the order is going to be different. <br> This problem asks us: What is the probability of event B <b>given</b> that
+            event A has already occurred. The equation would look like this now: <b>P(B | A)</b> </p>
+        
+        <p>Let's use the rest of the formula and see what we get:</p>
+        
+        <img src="Images/part(c).jpg" alt="part c" width="600" height="150">
+        <p>So, the probability that the student is taking biology given that the student is also taking calculus is around 0.23 or 23.3%.</p>
+        
+        <p>You should have notice that because A was given to us in this problem, we only focus on the set A and discard anything
+            outside of A. This means that the outcome of B can olny be possible if it is within the set B intersect A. This is why for 
+            the formula, we did the probability of event B intersect event A divided by the probability of event A.</p>
+	</body>
+    
+</html>

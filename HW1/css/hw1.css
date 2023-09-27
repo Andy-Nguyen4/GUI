@@ -1,0 +1,20 @@
+html {
+    background-color: beige; /* Sets the background color to beige */
+}
+
+/* sets font type to monospace, font size to 20 pixels, and color to crimson */
+h1, h2, h3 {
+    font-family: monospace;
+    font-size: 20px;
+    color: crimson;
+}
+
+table, th, td {
+    border: 1px solid black;  /* sets border size to 1 pixel and gives it a solid black color */
+    padding: 20px;  /* sets the space around each element's content to 20 pixels */
+    background-color: darkturquoise;
+}
+
+p {
+    font-size: 20px; /* sets the font size to 20 pixels */
+}
