@@ -1,0 +1,116 @@
+/*
+Name: Andy Nguyen
+Date: 10/7/2023
+Description: Styling index.html using external CSS. Only pacific.css should be edited. The page should look
+similar to the one shown in the images "capture 1-5."
+*/
+
+/* Establishes the display, min and max width for the area */
+header, hgroup, nav, #content, footer, figure, figcaption, aside, section, article {
+	display: block;
+    min-width: 600px;
+    max-width: 80%;
+}
+
+/* Adds in a background gradient image over the original */
+body {
+	background-color: #00569f;
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif;
+    background-image: url(ptrbackground.jpg);
+    background-repeat: repeat-x;
+}
+
+/* Establishes margins + colors and adds in a background image position to the right with no repeat */
+header {
+    margin: auto 600px auto 100px;
+    background-color: #0e0d34;
+    color: white;
+    background-image: url(sunset.jpg);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+/* Gives navigation bar margins, background color, and some padding. Got it alongside the left side of the main
+    page but could not get to go all the way down like a vertical block(according to capture images). */
+nav {
+    margin: auto 600px auto 100px;
+    background-color: #90c7e3;
+    padding-top: 5px;
+}
+
+/* list-style-type removes bullet points */
+nav ul {
+	font-size: 1.2em;
+    list-style-type: none;
+    color: black;
+}
+
+/* Changes font to bold and remove underlines from links by setting text-decoration to none */
+nav a:link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+nav a:visited {
+	color: #344873;
+}
+
+nav a:hover {
+	color: #FFFFFF;
+}
+
+/* Gives margins and padding to the main page */
+#content {
+    background-color: white;
+    margin: -131px 600px 0px 300px;
+    padding: 3px 30px 30px 30px;
+}
+
+/* Made the image float to the left. All text will go to the right or below it */
+img {
+    float: left;
+    padding-right: 30px;
+}
+
+/* Gives special coloring and bold font to the resort name */
+.resort {
+    color: #5c7eaf;
+    font-weight: bold;
+}
+
+/* Gives special bullet points to most of the text in the main page */
+#content ul {
+    list-style-image: url(marker.gif);
+}
+
+h1 {
+	margin-bottom: 0;
+	padding: 10px;
+}
+
+h2 {
+	color: #3399CC;
+}
+
+h1, h2 {
+	font-family: Georgia, "Times New Roman", serif;
+}
+
+#contact {
+	font-size: 90%;
+}
+
+dt {
+	color: #000033;
+}
+
+/* Establishes margins and padding for the footer */
+footer {
+	font-family: Georgia, "Times New Roman", serif;
+    background-color: white;
+    margin: 0px 600px 0px 300px;
+    padding: 10px 30px 30px 30px;
+}
+
