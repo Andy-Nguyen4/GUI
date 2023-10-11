@@ -7,16 +7,16 @@ similar to the one shown in the images "capture 1-5."
 
 /* Establishes the display, min and max width for the area */
 header, hgroup, nav, #content, footer, figure, figcaption, aside, section, article {
-	display: block;
+    display: block;
     min-width: 600px;
     max-width: 80%;
 }
 
 /* Adds in a background gradient image over the original */
 body {
-	background-color: #00569f;
-	color: #666666;
-	font-family: Arial, Helvetica, sans-serif;
+    background-color: #00569f;
+    color: #666666;
+    font-family: Arial, Helvetica, sans-serif;
     background-image: url(ptrbackground.jpg);
     background-repeat: repeat-x;
 }
@@ -41,7 +41,7 @@ nav {
 
 /* list-style-type removes bullet points */
 nav ul {
-	font-size: 1.2em;
+    font-size: 1.2em;
     list-style-type: none;
     color: black;
 }
@@ -54,11 +54,11 @@ nav a:link {
 }
 
 nav a:visited {
-	color: #344873;
+    color: #344873;
 }
 
 nav a:hover {
-	color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 /* Gives margins and padding to the main page */
@@ -86,29 +86,29 @@ img {
 }
 
 h1 {
-	margin-bottom: 0;
-	padding: 10px;
+    margin-bottom: 0;
+    padding: 10px;
 }
 
 h2 {
-	color: #3399CC;
+    color: #3399CC;
 }
 
 h1, h2 {
-	font-family: Georgia, "Times New Roman", serif;
+    font-family: Georgia, "Times New Roman", serif;
 }
 
 #contact {
-	font-size: 90%;
+    font-size: 90%;
 }
 
 dt {
-	color: #000033;
+    color: #000033;
 }
 
 /* Establishes margins and padding for the footer */
 footer {
-	font-family: Georgia, "Times New Roman", serif;
+    font-family: Georgia, "Times New Roman", serif;
     background-color: white;
     margin: 0px 600px 0px 300px;
     padding: 10px 30px 30px 30px;
