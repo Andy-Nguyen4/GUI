@@ -1,0 +1,52 @@
+<!--
+Name: Andy Nguyen
+Date: 11/08/2023
+Description: Making an interactive dynamic multiplication table. Have a HTML form to accept user inputs and validate the
+inputs by using JavaScript. JavaScript is also used to make the table. The formatting and styling is done by CSS.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <title> Interactive Dynamic Table</title>
+        <link rel="stylesheet" href="css/hw3.css">
+    </head>
+    
+    <body>
+        
+        <div id="title">
+            <h1>Interactive Dynamic Multiplication Table</h1>
+            <hr>
+        </div>
+        
+        <!-- this is the form for the user to input values -->
+        <form id="form">
+            <label for="minrow">Minimum Row Value:</label>
+            <input type="text" id="minrow" required><br>
+            
+            <label for="maxrow">Maximum Row Value:</label>
+            <input type="text" id="maxrow" required><br>
+            
+            <label for="mincolumn">Minimum Column Value:</label>
+            <input type="text" id="mincolumn" required><br>
+            
+            <label for="maxcolumn">Maximum Column Value:</label>
+            <input type="text" id="maxcolumn" required><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+        
+        <!-- this will appear if there's an error -->
+         <div id="errorContainer"></div>
+        
+        <div id="tableContainer">
+            <table id="multiplicationTable"></table>
+        </div>
+        
+        <script src="js/hw3.js"></script>
+        
+    </body>
+    
+</html> 
