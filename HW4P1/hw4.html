@@ -72,6 +72,7 @@ jQuery Validation plugin on the hw4.html file.
                 return minValue <= maxValue;
             }, "The starting number should be less than or equal to the end number. E.g., Minimum Row Value: 5, Maximum Row Value: 10 (or any number that is not less than 5).");
 
+            // validate user input
             $("#form").validate({
                 rules: {
                     minrow: {
@@ -93,6 +94,7 @@ jQuery Validation plugin on the hw4.html file.
                         checkMinMaxRelationship: ["mincolumn", "maxcolumn"]
                     }
                 },
+                // these error messages will appear if something is wrong
                 messages: {
                     minrow: {
                         required: "Please enter a minimum row value. ",
