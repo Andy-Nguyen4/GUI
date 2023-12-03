@@ -33,10 +33,9 @@ function checkValidRange(fieldName, errorSpan) {
     
     var minValue = parseInt(document.getElementById("min" + fieldName).value);
     var maxValue = parseInt(document.getElementById("max" + fieldName).value);
-    //errorSpan.innerHTML = "";
 
     // check for valid range
-    if (!isNaN(minValue) && !isNaN(maxValue) && minValue > maxValue) {
+    if (!isNaN(minValue) && !isNaN(maxValue) && !isNaN(minValue) > !isNaN(maxValue)) {
         errorSpan.innerHTML = "Error! The starting number should be less than or equal to the end number.";
     } else {
         errorSpan.innerHTML = "";
