@@ -55,7 +55,7 @@ jQuery Validation plugin on the hw4.html file.
         
         <script>
         // jQuery Validation initialization
-        $(document).ready(function () {
+        $(document).ready(function() {
             
             // custom method for checking min and max relationship
             $.validator.addMethod("checkMinMaxRelationship", function(value, element, p) {
@@ -70,7 +70,7 @@ jQuery Validation plugin on the hw4.html file.
                 }
 
                 return minValue <= maxValue;
-            }, "The starting number should be less than or equal to the end number. E.g., Minimum Row Value: 5, Maximum Row Value: 10 (or any number that is not less than 5).");
+            }, "The maximum row/column value should be greater than or equal to the minimum row/column value. E.g., Minimum Row Value: 5, Maximum Row Value: 10 (or any number that is not less than 5).");
 
             // validate user input
             $("#form").validate({
@@ -113,11 +113,11 @@ jQuery Validation plugin on the hw4.html file.
                         number: "Please enter a valid integer value (e.g., -5, -1, 2, 4)."
                     }
                 },
-                errorPlacement: function (error, element) {
+                errorPlacement: function(error, element) {
                     // place the error message next to the input field
                     error.insertAfter(element);
                 },
-                submitHandler: function (form) {
+                submitHandler: function(form) {
                     // if the form is valid, call the generateTable function
                     generateTable();
                     return false; // prevent form submission
