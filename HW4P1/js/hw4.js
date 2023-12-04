@@ -93,7 +93,7 @@ function generateTable() {
     }
     
     // clear previous errors
-    document.querySelectorAll(".errorMessage").forEach(function (element) {
+    document.querySelectorAll(".errorMessage").forEach(function(element) {
         element.innerHTML = "";
     });
     
@@ -112,7 +112,7 @@ function generateTable() {
     }
     
     // function to generate data rows incrementally. More explained below.
-    function generateRows (minColValue, maxColValue) {
+    function generateRows(minColValue, maxColValue) {
         for (var j = minColValue; j<= maxColValue; j++) {
             var row = table.insertRow(-1);
             row.insertCell().outerHTML = "<th>" + j + "</th>";
@@ -140,7 +140,7 @@ function generateTable() {
 
         // request the next chunk
         if (chunkIndex < chunks - 1) {
-            requestAnimationFrame(function () {
+            requestAnimationFrame(function() {
                 generateChunk(chunkIndex + 1);
             });
         }
@@ -158,7 +158,7 @@ document.getElementById("form").addEventListener("submit", function(event) {
 });
 
 // initial check for valid input
-var initialValidation = function () {
+var initialValidation = function() {
     
     // check for valid input value
     checkValidInput("minrow", document.getElementById("errorminrow"));
