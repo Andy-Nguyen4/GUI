@@ -1,0 +1,131 @@
+<!--
+Name: Andy Nguyen
+Date: 11/22/2023
+Contact: Andy_Nguyen4@student.uml.edu
+Description: Making an interactive dynamic multiplication table. Have a HTML form to accept user inputs and validate the
+inputs by using JavaScript. JavaScript is also used to make the table. The formatting and styling is done by CSS. Also includes
+jQuery, and jQuery Validation plugin on the hw4.html file. This is homework 4 part 1.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <title> Interactive Dynamic Table</title>
+        <link rel="stylesheet" href="css/hw4.css">
+        <!-- Include jQuery and jQuery Validation plugin -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    </head>
+    
+    <body>
+        
+        <div id="title">
+            <h1>Interactive Dynamic Multiplication Table</h1>
+            <hr>
+        </div>
+        
+        <!-- this is the form for the user to input values -->
+        <form id="form">
+            <label for="minrow">Minimum Row Value:</label>
+            <input type="text" id="minrow" name="minrow" required><br>
+            <span id="errorMinRow" class="errorMessage"></span><br>
+            
+            <label for="maxrow">Maximum Row Value:</label>
+            <input type="text" id="maxrow" name="maxrow" required><br>
+            <span id="errorMaxRow" class="errorMessage"></span><br>
+            
+            <label for="mincolumn">Minimum Column Value:</label>
+            <input type="text" id="mincolumn" name="mincolumn" required><br>
+            <span id="errorMinColumn" class="errorMessage"></span><br>
+            
+            <label for="maxcolumn">Maximum Column Value:</label>
+            <input type="text" id="maxcolumn" name="maxcolumn" required><br>
+            <span id="errorMaxColumn" class="errorMessage"></span><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+        
+        <div id="tableContainer">
+            <table id="multiplicationTable"></table>
+        </div>
+        
+        <script src="js/hw4.js"></script>
+        
+        <script>
+        // jQuery Validation initialization
+        $(document).ready(function() {
+            
+            // custom method for checking min and max relationship
+            $.validator.addMethod("checkMinMaxRelationship", function(value, element, p) {
+                var minFieldName = p[0];
+                var maxFieldName = p[1];
+
+                var minValue = parseInt($("#" + minFieldName).val());
+                var maxValue = parseInt($("#" + maxFieldName).val());
+                
+                if (isNaN(minValue) || isNaN(maxValue)) {
+                    return true;
+                }
+
+                return minValue <= maxValue;
+            }, "The maximum row/column value should be greater than or equal to the minimum row/column value. E.g., Minimum Row Value: 5, Maximum Row Value: 10 (or any number that is not less than 5).");
+            
+            // validate user input
+            $("#form").validate({
+                rules: {
+                    minrow: {
+                        required: true,
+                        number: true
+                    },
+                    maxrow: {
+                        required: true,
+                        number: true,
+                        checkMinMaxRelationship: ["minrow", "maxrow"]
+                    },
+                    mincolumn: {
+                        required: true,
+                        number: true
+                    },
+                    maxcolumn: {
+                        required: true,
+                        number: true,
+                        checkMinMaxRelationship: ["mincolumn", "maxcolumn"]
+                    }
+                },
+                // these error messages will appear if something is wrong
+                messages: {
+                    minrow: {
+                        required: "Please enter a minimum row value. ",
+                        number: "Please enter a valid integer value (e.g., -5, -1, 2, 4)."
+                    },
+                    maxrow: {
+                        required: "Please enter a maximum row value. ",
+                        number: "Please enter a valid integer value (e.g., -5, -1, 2, 4)."
+                    },
+                    mincolumn: {
+                        required: "Please enter a minimum column value. ",
+                        number: "Please enter a valid integer value (e.g., -5, -1, 2, 4)."
+                    },
+                    maxcolumn: {
+                        required: "Please enter a maximum column value. ",
+                        number: "Please enter a valid integer value (e.g., -5, -1, 2, 4)."
+                    }
+                },
+                errorPlacement: function(error, element) {
+                    // place the error message next to the input field
+                    error.insertAfter(element);
+                },
+                submitHandler: function(form) {
+                    // if the form is valid, call the generateTable function
+                    generateTable();
+                    return false; // prevent form submission
+                }
+            });
+        });
+        </script>
+        
+    </body>
+    
+</html> 

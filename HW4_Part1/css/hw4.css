@@ -1,0 +1,82 @@
+/*
+Name: Andy Nguyen
+Date: 11/22/2023
+Contact: Andy_Nguyen4@student.uml.edu
+Description: Making an interactive dynamic multiplication table. Have a HTML form to accept user inputs and validate the
+inputs by using JavaScript. JavaScript is also used to make the table. The formatting and styling is done by CSS. Also includes
+jQuery, and jQuery Validation plugin on the hw4.html file. This is homework 4 part 1.
+*/
+
+#title h1 {
+    text-align: center;
+}
+
+#title hr {
+    border: 5px solid;
+}
+
+body {
+    background-color: beige;
+}
+
+form {
+    float: left;    /* this will put the input form on the left side of the page*/
+    width: 30%;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0px;
+    box-sizing: border-box;
+}
+
+.errorMessage {
+    color: crimson;
+    font-size: 15px;
+}
+
+#tableContainer {
+    max-width: 50%;
+    overflow-x: auto;
+    overflow-y: auto;
+    margin: 20px auto;
+    height: 500px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+th:first-child {
+    background-color: skyblue;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}
+
+tr:first-child th:first-child {
+    background-color: white;       /* set background color for the first header cell in the first row */
+}
+
+th:not(:first-child) {
+    background-color: skyblue;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+tr:nth-child(odd):not(:first-child) {
+    background-color: red;              /* alternate color for odd rows */
+}
+
+tr:nth-child(even):not(:first-child) {
+    background-color: white;            /* alternate color for even rows */
+}
