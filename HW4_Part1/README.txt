@@ -1,7 +1,7 @@
 
 GitHub URL for application:
 
-https://github.com/Andy-Nguyen4/GUI/blob/b0b87c7d58337224f64d857575ac5dd7ca71eb51/HW4P1/hw4.html
+https://github.com/Andy-Nguyen4/GUI/blob/a3fd52910fe0dfeeb09ce2084f4a1fe20d99d414/HW4_Part1/hw4.html
 
 My GitHub Repository for HW4 part 1:
 
