@@ -1,0 +1,133 @@
+/*
+Name: Andy Nguyen
+Date: 11/22/2023
+Contact: Andy_Nguyen4@student.uml.edu
+Description: Making an interactive dynamic multiplication table. Have a HTML form to accept user inputs and validate the
+inputs by using JavaScript. JavaScript is also used to make the table. The formatting and styling is done by CSS. Also includes
+jQuery, jQuery Validation plugin, and jQuery UI. This is homework 4 part 2 where the UI sliders and tabs widget are implemented.
+*/
+
+#title h1 {
+    text-align: center;
+}
+
+#title hr {
+    border: 5px solid;
+}
+
+body {
+    background-color: beige;
+}
+
+form {
+    width: auto;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0px;
+    box-sizing: border-box;
+}
+
+#minrow-slider, #maxrow-slider, #mincolumn-slider, #maxcolumn-slider {
+    width: 60%;
+    margin: 10px 0px;
+}
+
+#multiplicationTable {
+    display: none;
+}
+
+#tabs {
+    width: auto;
+}
+
+#tabs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+/* tab background and borders */
+#tabs ul li {
+    background-color: gainsboro;
+    border: 3px solid black;
+    margin-bottom: 5px;
+}
+
+/* tab text color */
+#tabs ul li a {
+    color: darkblue;
+    display: block;
+    padding: 10px;        
+    text-decoration: none;
+}
+
+/* customize styles for the active tab */
+#tabs ul li.ui-state-active {
+    background-color: white;
+}
+
+.errorMessage {
+    color: crimson;
+    font-size: 15px;
+}
+
+.delete-tab {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#tabs ul li.ui-selected {
+    background-color: lightcoral;
+}
+
+.tabTableContainer {
+    max-width: 500px; 
+    overflow-x: auto;
+    overflow-y: auto;
+    margin: 20px auto; 
+    max-height: 300px;
+}
+
+.tabTable {
+    border-collapse: collapse;
+    max-width: 500px; 
+    margin: 20px auto; 
+    max-height: 300px; 
+}
+
+th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+th:first-child {
+    background-color: skyblue;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}
+
+tr:first-child th:first-child {
+    background-color: white;       /* set background color for the first header cell in the first row */
+}
+
+th:not(:first-child) {
+    background-color: skyblue;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+tr:nth-child(odd):not(:first-child) {
+    background-color: red;              /* alternate color for odd rows */
+}
+
+tr:nth-child(even):not(:first-child) {
+    background-color: white;            /* alternate color for even rows */
+}

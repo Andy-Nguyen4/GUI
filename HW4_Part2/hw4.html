@@ -1,0 +1,264 @@
+<!--
+Name: Andy Nguyen
+Date: 11/22/2023
+Contact: Andy_Nguyen4@student.uml.edu
+Description: Making an interactive dynamic multiplication table. Have a HTML form to accept user inputs and validate the
+inputs by using JavaScript. JavaScript is also used to make the table. The formatting and styling is done by CSS. Also includes
+jQuery, jQuery Validation plugin, and jQuery UI. This is homework 4 part 2 where the UI sliders and tabs widget are implemented.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <title> Interactive Dynamic Table</title>
+        <link rel="stylesheet" href="css/hw4.css">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+        <!-- Include jQuery, jQuery UI, and jQuery Validation plugin -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    </head>
+    
+    <body>
+        
+        <div id="title">
+            <h1>Interactive Dynamic Multiplication Table</h1>
+            <hr>
+        </div>
+        
+        <div id="tabs">
+            <ul>
+                <li class="tab-item"><a href="#paramTab">Parameters</a></li>
+            </ul>
+            <div id="paramTab">
+                <!-- this is the form for the user to input values -->
+                <form id="form">
+                    <label for="minrow">Minimum Row Value:</label>
+                    <input type="text" id="minrow" name="minrow" required><br>
+                    <div id="minrow-slider"></div><br>
+                    <span id="errorMinRow" class="errorMessage"></span><br>
+            
+                    <label for="maxrow">Maximum Row Value:</label>
+                    <input type="text" id="maxrow" name="maxrow" required><br>
+                    <div id="maxrow-slider"></div><br>
+                    <span id="errorMaxRow" class="errorMessage"></span><br>
+            
+                    <label for="mincolumn">Minimum Column Value:</label>
+                    <input type="text" id="mincolumn" name="mincolumn" required><br>
+                    <div id="mincolumn-slider"></div><br>
+                    <span id="errorMinColumn" class="errorMessage"></span><br>
+            
+                    <label for="maxcolumn">Maximum Column Value:</label>
+                    <input type="text" id="maxcolumn" name="maxcolumn" required><br>
+                    <div id="maxcolumn-slider"></div><br>
+                    <span id="errorMaxColumn" class="errorMessage"></span><br>
+            
+                    <input type="submit" value="Submit"><br>
+                </form>
+            </div>
+        </div>
+        
+        <button id="delete-all-tabs">Delete All Tabs</button>
+        
+        <table id="multiplicationTable"></table>
+
+        <script src="js/hw4.js"></script>
+        
+        <script>
+            
+            // jQuery Validation initialization
+            $(document).ready(function () {
+                
+                // custom method for checking min and max relationship
+                $.validator.addMethod("checkMinMaxRelationship", function(value, element, p) {
+                    var minFieldName = p[0];
+                    var maxFieldName = p[1];
+
+                    var minValue = parseInt($("#" + minFieldName).val());
+                    var maxValue = parseInt($("#" + maxFieldName).val());
+                
+                    if (isNaN(minValue) || isNaN(maxValue)) {
+                        return true;
+                    }
+                    
+                    return minValue <= maxValue;
+                }, "The maximum row/column value should be greater than or equal to the minimum row/column value. E.g., Minimum Row Value: 5, Maximum Row Value: 10 (or any number that is not less than 5).");
+                
+                // validate user input
+                $("#form").validate({
+                    rules: {
+                        minrow: {
+                            required: true,
+                            number: true
+                        },
+                        maxrow: {
+                            required: true,
+                            number: true,
+                            checkMinMaxRelationship: ["minrow", "maxrow"]
+                        },
+                        mincolumn: {
+                            required: true,
+                            number: true
+                        },
+                        maxcolumn: {
+                            required: true,
+                            number: true,
+                            checkMinMaxRelationship: ["mincolumn", "maxcolumn"]
+                        }
+                    },
+                    // these error messages will appear if something is wrong
+                    messages: {
+                        minrow: {
+                            required: "Please enter a minimum row value. ",
+                            number: "Please enter a valid integer value (e.g., -5, -1, 2, 4)."
+                        },
+                        maxrow: {
+                            required: "Please enter a maximum row value. ",
+                            number: "Please enter a valid integer value (e.g., -5, -1, 2, 4)."
+                        },
+                        mincolumn: {
+                            required: "Please enter a minimum column value. ",
+                            number: "Please enter a valid integer value (e.g., -5, -1, 2, 4)."
+                        },
+                        maxcolumn: {
+                            required: "Please enter a maximum column value. ",
+                            number: "Please enter a valid integer value (e.g., -5, -1, 2, 4)."
+                        }
+                    },
+                    errorPlacement: function(error, element) {
+                        // place the error message next to the input field
+                        error.insertAfter(element);
+                    },
+                    submitHandler: function(form) {
+                        // if the form is valid, call the generateTable function
+                        generateTable();
+                        return false; // prevent form submission
+                    }
+                });
+            });
+                
+            // function to create a new tab with a generated table
+            function createTableTab(minRow, maxRow, minCol, maxCol) {
+                var tabLabel = `${minRow}-${maxRow} Rows x ${minCol}-${maxCol} Columns`;
+                
+                // check if the tab already exists, if yes, select it
+                var existingTab = $("#tabs ul a:contains('" + tabLabel + "')");
+                if (existingTab.length > 0) {
+                    $("#tabs").tabs("option", "active", existingTab.parent().index());
+                    return;
+                }
+                
+                // create a new tab with a unique ID
+                var tabId = `tab-${Date.now()}`;
+                $("#tabs ul").append(
+                    `<li><a href="#${tabId}">${tabLabel}</a>
+                         <button class="delete-tab" data-tab-id="${tabId}">Delete</button>
+                     </li>`
+                );
+                $("#tabs").append(`<div id="${tabId}"></div>`);
+
+                // generate the table in the new tab
+                generateTable(minRow, maxRow, minCol, maxCol, `#${tabId}`);
+                
+                // initialize tabs (if not already initialized)
+                if (!$("#tabs").hasClass("ui-tabs")) {
+                    $("#tabs").tabs();
+                }
+                
+                $("#tabs").tabs("refresh");
+                $("#tabs").tabs("option", "active", -1); // activate the newly added tab
+            }
+            
+            // Event listener for deleting a tab
+            $(document).on("click", ".delete-tab",function() {
+                var tabIdToDelete = $(this).data("tab-id");
+    
+                // remove the tab and its content
+                $(`#${tabIdToDelete}`).remove();
+                $(`[href="#${tabIdToDelete}"]`).parent().remove();
+                $("#tabs").tabs("refresh");
+            });
+            
+            // Event listener for deleting multiple tabs
+            $("#delete-all-tabs").on("click", function() {
+                
+                // find all selected tabs using the "ui-selected" class
+                var selectedTabs = $("#tabs ul li.tab-item.ui-selected");
+
+                // check if at least one tab is selected
+                if (selectedTabs.length > 0) {
+                    // remove each selected tab and its content
+                    selectedTabs.each(function() {
+                        var tabIdToDelete = $("a", this).attr("href").substring(1);
+                        $(`#${tabIdToDelete}`).remove();
+                        $(this).remove();
+                    });
+
+                    // Refresh the tabs
+                    $("#tabs").tabs("refresh");
+                } else {
+                    alert("Please select one or more tabs to delete.");
+                }
+            });
+            
+            function generateTable(minRow, maxRow, minCol, maxCol, targetElement) {
+                
+                // create a new table container element
+                var tableContainer = document.createElement("div");
+                tableContainer.className = "tabTableContainer";
+                
+                // create a new table element
+                var table = document.createElement("table");
+                table.className = "tabTable";
+
+                // add header rows
+                var headRow = table.insertRow(0);
+                headRow.insertCell().outerHTML = "<th></th>"; // empty corner
+
+                for (var i = minRow; i <= maxRow; i++) {
+                    headRow.insertCell().outerHTML = "<th>" + i + "</th>";
+                }
+
+                // generate data rows
+                for (var j = minCol; j <= maxCol; j++) {
+                    var row = table.insertRow(-1);
+                    row.insertCell().outerHTML = "<th>" + j + "</th>";
+                    for (var h = minRow; h <= maxRow; h++) {
+                        row.insertCell().innerHTML = j * h;
+                    }
+                }
+                
+                tableContainer.appendChild(table);
+
+                // append the table to the specified target element or default container
+                if (targetElement) {
+                    $(targetElement).html(table);
+                } else {
+                    document.getElementById("multiplicationTable").appendChild(table);
+                }
+                
+                // initialize tabs (if not already initialized)
+                if (!$("#tabs").hasClass("ui-tabs")) {
+                    $("#tabs").tabs();
+                }
+                $("#tabs").tabs("refresh");
+            }
+            
+            // event listener for the form submission
+            document.getElementById("form").addEventListener("submit", function(event) {
+                event.preventDefault();
+                createTableTab(
+                    parseInt(document.getElementById("minrow").value),
+                    parseInt(document.getElementById("maxrow").value),
+                    parseInt(document.getElementById("mincolumn").value),
+                    parseInt(document.getElementById("maxcolumn").value)
+                );
+            });
+            
+        </script>
+        
+    </body>
+    
+</html> 
