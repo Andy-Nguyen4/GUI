@@ -1,0 +1,71 @@
+<!--
+Name: Andy Nguyen
+Date: 12/18/2023
+Contact: Andy_Nguyen4@student.uml.edu
+Description: Implemented one line of the Scrabble board game along with seven tiles on a tile rack. Features include: drag-and-drop, 
+bonus squares, dealing new tiles, scoring, and restarting. Use developer console (in inspect element) to see which tile is 
+dropped into which Scrabble square.
+-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Scrabble Board Game</title>
+        <link rel="stylesheet" href="css/hw5.css">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    </head>
+    
+    <body>
+        
+        <div id="title">
+            <h1>Scrabble Board Game</h1>
+        </div>
+        
+        <!-- scrabble board row with drop targets -->
+        <div id="board">
+            <div class="drop-target"></div>
+            <div class="drop-target"></div>
+            <div class="drop-target bonus"></div>
+            <div class="drop-target"></div>
+            <div class="drop-target bonus"></div>
+            <div class="drop-target"></div>
+            <div class="drop-target"></div>
+        </div>
+        
+         <!-- tile rack for the user's letters-->
+        <div id="rack">
+        </div>
+        
+        <!-- buttons for the player to click -->
+        <div id="button-area">
+            <!-- button for reshuffling tiles -->
+            <button id="deal-button">Deal New Tiles</button>
+        
+            <!-- button to get the score -->
+            <button id="calculate-score">Get Score</button>
+        
+            <!-- button to restart game -->
+            <button id="restart-game">Restart Game</button>
+        </div>
+        
+        <!-- will display a message telling you to place at least one tile on the Scrabble board -->
+        <div id="message"></div>
+        
+        <!-- displays the score -->
+        <div id="score-display">Your Score: <span id="player-score">0</span></div>
+        
+        <div id="info-box">
+            <h2><b>Guide</b></h2>
+            <p><b>Deal New Tiles:</b> Click this to reshuffle the tiles on the tile rack.</p><br>
+            <p><b>Get Score:</b> Click this to get the score for the current round.<br>This will also take you to the next round.</p><br>
+            <p><b>Restart Game:</b> Click this to start a new game. This will also reset your score to 0.</p>
+        </div>
+        
+        <script src="js/hw5.js"></script>
+        
+    </body>
+</html>

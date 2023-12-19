@@ -1,0 +1,110 @@
+/*
+Name: Andy Nguyen
+Date: 12/18/2023
+Contact: Andy_Nguyen4@student.uml.edu
+Description: Implemented one line of the Scrabble board game along with seven tiles on a tile rack. Features include: drag-and-drop, 
+bonus squares, dealing new tiles, scoring, and restarting. Use developer console (in inspect element) to see which tile is 
+dropped into which Scrabble square.
+*/
+
+body {
+    background-color: beige;
+}
+
+#title {
+    text-align: center;
+}
+
+/* defines the style for the Scrabble board*/
+#board {
+    display: flex;
+    justify-content: center;
+    margin: 50px auto auto;
+}
+
+/* defines the style for each drop target */
+.drop-target {
+    width: 65px;
+    height: 65px;
+    border: 5px solid black;
+    margin: 3px;
+    background-image: url('Scrabble_Tile_Blank.jpg');
+    background-size: 100%;
+}
+
+/* defines the style for bonus squares*/
+.bonus {
+    background-image: url('bonus.png');
+}
+
+/* defines the style for the tile rack */
+#rack {
+    display: flex;
+    justify-content: center;
+    margin: 100px auto 20px;
+    width: 500px;
+    height: 150px; 
+    background-image: url('scrabble-tile-holder-406774_640.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+/* defines the style for individual tile images on the tile rack*/
+#rack img {
+    width: 60px;
+    height: 60px;
+    margin: 35px 5px 5px;
+}
+
+/* defines the style for the tiles placed on the Scrabble board */
+.tile-on-board {
+    width: 60px;
+    height: 60px;
+    margin: 35px 5px 5px;
+}
+
+/* defines the style for the score display */
+#score-display {
+    text-align: center;
+    border: 10px solid black;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 50px auto auto;
+    padding: 10px;
+    width: 20%;
+    background-color: lightskyblue;
+}
+
+#message {
+    text-align: center;
+    color: maroon;
+    font-weight: bold;
+}
+
+#info-box {
+    border: 5px solid black;
+    text-align: center;
+    margin: 50px auto auto;
+    width: 30%;
+    background-color: lightcoral;
+}
+
+#button-area {
+    margin: auto;
+    text-align: center;
+}
+
+#deal-button {
+    text-align: center;
+    margin: 10px;
+}
+
+#calculate-score {
+    text-align: center;
+    margin: 10px;
+}
+
+#restart-game {
+    text-align: center;
+    margin: 10px;
+}
